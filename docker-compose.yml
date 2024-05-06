@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/ddl.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      pdaw_network:
+        ipv4_address: 172.21.0.2
+
+  frontend:
+    container_name: frontend
+    build: ./packages/frontend
+    ports:
+      - 4173:4173
+      - 5173:5173
+    networks:
+      pdaw_network:
+        ipv4_address: 172.21.0.3
+
+  backend:
+    container_name: backend
+    build: ./packages/backend
+    depends_on:
+      - db
+    ports:
+      - 3000:3000 # Server port
+      - 4000:4000 # WS port
+    networks:
+      pdaw_network:
+        ipv4_address: 172.21.0.4
+
+networks:
+  pdaw_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/16
+
+volumes:
+  postgres_data:

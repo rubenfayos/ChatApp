@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "target": "es5",
+    "outDir": "./build",
+    "module": "commonjs",
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "~/*": ["./src/*", "./dist/*"]
+    },
+    "lib": ["DOM", "ESNext"],
+    "isolatedModules": false,
+    "noEmit": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.css",
+    "src/**/*.d.ts"
+  ],
+
+  "exclude": ["node_modules", "/**/*.cjs"]
+}

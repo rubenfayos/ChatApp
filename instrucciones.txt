@@ -1,0 +1,5 @@
+Iniciar el docker utilizando `docker compose up` o `docker-compose up`
+
+La base de datos se creará automáticamente
+
+Ir a la dirección `http://172.21.0.3:4173`

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define initial state of the modal */
+.modal {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+/* Define the state when the modal is shown */
+.modal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+form {
+  @apply flex flex-col gap-y-4;
+}
+
+form > div > button {
+  @apply mt-4;
+}
+
+input {
+  @apply w-full border rounded p-1 text-sm;
+}
+
+button {
+  @apply px-2 py-2 text-sm text-white rounded-md;
+}
+
+@layer components {
+  .primary-button {
+    @apply bg-blue-500  hover:bg-blue-600 focus:outline-none active:bg-blue-700;
+  }
+
+  .red-button {
+    @apply bg-red-500 hover:bg-red-600 focus:outline-none active:bg-red-700;
+  }
+}
